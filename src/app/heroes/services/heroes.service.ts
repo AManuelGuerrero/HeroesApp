@@ -29,4 +29,17 @@ export class HeroesService {
   getSugerencias( termino: string ):Observable<Heroe[]>{
     return this.http.get<Heroe[]>(environment.baseUrl+this.urlHeroes+'?q='+termino+'&_limit='+this.limit);
   }
+
+  agregarHeroe( heroe: Heroe):Observable<Heroe>{
+    return this.http.post<Heroe>(`${environment.baseUrl}${this.urlHeroes}`, heroe);
+  }
+
+  actualizarHeroe( heroe : Heroe):Observable<Heroe>{
+    return this.http.put<Heroe>(`${environment.baseUrl}${this.urlHeroes}/${heroe.id}`, heroe);
+  }
+
+  eliminarHeroe(id : string):Observable<any>{
+    return this.http.delete<any>(`${environment.baseUrl}${this.urlHeroes}/${id}`);
+  }
+
 }
